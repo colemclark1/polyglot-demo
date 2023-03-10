@@ -1,0 +1,2 @@
+./python/venv/*
+./python/app/__pycache__/*
