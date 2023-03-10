@@ -1,2 +1,4 @@
-./python/venv/*
-./python/app/__pycache__/*
+/python/venv/*
+/python/app/__pycache__/*
+
+*.DS_Store
