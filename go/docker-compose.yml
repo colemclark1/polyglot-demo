@@ -1,0 +1,6 @@
+version: '1'
+services:
+    go-demo:
+        build: .
+        ports:
+            - 7778:7778
