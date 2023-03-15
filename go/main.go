@@ -55,10 +55,20 @@ func main() {
 		c.JSON(http.StatusNotFound, gin.H{"error": "user not found"})
 	})
 
-	// TODO: add new user
-	router.POST("/users", func(c *gin.Context) {})
+	// add new user
+	router.POST("/users", func(c *gin.Context) {
+		next_id := users[len(users)-1].Id + 1
 
-	// TODO: updated user
+		var new_user User
+		c.BindJSON(&new_user)
+		new_user.Id = next_id
+
+		users = append(users, new_user)
+
+		c.JSON(http.StatusCreated, new_user)
+	})
+
+	// update user
 	router.PUT("/users/:user_id", func(c *gin.Context) {})
 
 	log.Info("Server listening on port ", port)
