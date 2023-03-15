@@ -43,9 +43,9 @@ func main() {
 	// get user by id
 	router.GET("/users/:target_user_id", func(c *gin.Context) {
 		target_user_id := strings.ToLower(c.Param("target_user_id"))
+		id, _ := strconv.Atoi(target_user_id)
 
 		for _, u := range users {
-			id, _ := strconv.Atoi(target_user_id)
 			if u.Id == id {
 				c.JSON(http.StatusOK, u)
 				return
@@ -69,7 +69,26 @@ func main() {
 	})
 
 	// update user
-	router.PUT("/users/:user_id", func(c *gin.Context) {})
+	router.PUT("/users/:user_id", func(c *gin.Context) {
+		user_id := strings.ToLower(c.Param("user_id"))
+		id, _ := strconv.Atoi(user_id)
+
+		var user_info User
+		c.BindJSON(&user_info)
+
+		for i, u := range users {
+			if u.Id == id {
+				u.Name = user_info.Name
+				u.Email = user_info.Email
+				// we need this to update the slice entry
+				users[i] = u
+				c.JSON(http.StatusOK, u)
+				return
+			}
+		}
+
+		c.JSON(http.StatusNotFound, gin.H{"error": "user not found"})
+	})
 
 	log.Info("Server listening on port ", port)
 
