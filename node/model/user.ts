@@ -1,4 +1,4 @@
-class User {
+export class User {
     private id: number;
     private name: string;
     private email: string;
@@ -9,4 +9,5 @@ class User {
         this.email = email;
     }
 }
+
 
