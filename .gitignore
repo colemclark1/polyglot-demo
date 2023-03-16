@@ -1,4 +1,7 @@
 /python/venv/*
 /python/app/__pycache__/*
+/node/node_modules
+/node/node_modules/*
+/dist/*
 
 *.DS_Store
