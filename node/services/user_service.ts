@@ -8,12 +8,12 @@ class UserService {
         this.users.push(new User(2, "Kovit Nisar", "kovit.nisar@ibm.com"))
     }
 
-    get_all_user(): User[] {
+    async get_all_user(): Promise<User[]> {
         return this.users;
     }
 
-    get_user_by_id(id: number): User {
-        return this.users[id]
+    async get_user_by_id(id: number): Promise<User> {
+        return this.users[id - 1]
     }
 
     create_user(name: string, email: string): User {
