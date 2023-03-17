@@ -9,6 +9,7 @@ class UserService {
     }
 
     async get_all_user(): Promise<User[]> {
+        // db call to get all the users
         return this.users;
     }
 
@@ -16,13 +17,13 @@ class UserService {
         return this.users[id - 1]
     }
 
-    create_user(name: string, email: string): User {
+    async create_user(name: string, email: string): Promise<User> {
         const user: User = new User(this.users.length, name, email)
         this.users.push(user);
         return user;
     }
 
-    update_user(id: number, name: string, email: string): User {
+    async update_user(id: number, name: string, email: string): Promise<User> {
         const user: User = new User(this.users.length, name, email)
         return user;
     }
